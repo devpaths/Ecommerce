@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // Erase if already required
 const bycrypt = require("bcrypt");
-const { defaultConfig } = require("next/dist/server/config-shared");
+// const { defaultConfig } = require("next/dist/server/config-shared");
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema(
   {
@@ -28,6 +28,10 @@ var userSchema = new mongoose.Schema(
       type: String,
       default: "user",
     },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
     cart: {
       type: Array,
       default: [],
@@ -44,6 +48,9 @@ var userSchema = new mongoose.Schema(
         ref: "Product",
       },
     ],
+    refreshToken: {
+      type: String,
+    },
   },
   {
     timestamps: true,
